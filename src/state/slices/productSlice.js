@@ -3,9 +3,9 @@ import { fetchProductThunk } from "../thunk/fetchProductThunk";
 
 
 const productSlice = createSlice({
-    name: "prodcts",
+    name: "products",
     initialState: {
-        products: [],
+        productsList: [],
         loading: false,
         error: null
     },
@@ -19,7 +19,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchProductThunk.fulfilled, (state, action) => {
                 state.loading = false;
-                state.products = action.payload;
+                state.productsList = action.payload;
             })
             .addCase(fetchProductThunk.rejected, (state, action) => {
                 state.loading = false;

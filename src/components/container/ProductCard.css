@@ -1,0 +1,116 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.product-card__image-wrapper {
+  position: relative;
+  height: 200px;
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+
+.product-card:hover .product-card__image-wrapper {
+  height: 240px;
+}
+
+.product-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-card__image.visible {
+  opacity: 1;
+  z-index: 1;
+}
+
+.product-card__dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #fff;
+}
+
+.product-card__content {
+  padding: 16px;
+}
+
+.product-card__badge {
+  display: inline-block;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.product-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.product-card__desc {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 8px 0 12px;
+  line-height: 1.4;
+}
+
+.product-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-card__price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #059669;
+}
+
+.product-card__btn {
+  padding: 8px 16px;
+  background-color: #059669;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-card__btn:hover {
+  background-color: #047857;
+}
