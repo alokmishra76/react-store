@@ -1,5 +1,5 @@
 import apiService from "../base/apiService"
 
-export const fetchProduct = () => {
-    return apiService.get("/products")
+export const fetchProduct = ({offset=0, limit= 10}) => {
+    return apiService.get(`/products?offset=${offset}&limit=${limit}`)
 }

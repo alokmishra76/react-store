@@ -1,11 +1,17 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Header from './components/header/Header';
+import Body from './components/body/Body';
+import MainContainer from './components/container/MainContainer';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <BrowserRouter basename='/'>
+      <Routes>
+        <Route path="/" element={<Body />}>
+        <Route index element={<MainContainer />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

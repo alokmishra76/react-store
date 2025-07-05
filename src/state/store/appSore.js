@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import feedReducer from "../slices/productSlice";
+import producsReducer from "../slices/productSlice";
 
 const appStore = configureStore({
     reducer: {
-        products: feedReducer
+        products: producsReducer
     }
 });
 

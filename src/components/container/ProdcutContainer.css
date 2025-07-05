@@ -1,0 +1,26 @@
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem; /* 24px */
+  justify-content: space-between;
+}
+
+.product-list > * {
+  flex: 1 1 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .product-list > * {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .product-list > * {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}

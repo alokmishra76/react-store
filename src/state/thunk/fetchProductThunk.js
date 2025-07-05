@@ -4,13 +4,15 @@ import { fetchProduct } from "../../services/service/feedService";
 
 export const fetchProductThunk = createAsyncThunk(
     "feed/fetchProducts",
-    async (_, { rejectWithValue, fulfillWithValue }) => {
+    // Accept payload as the first argument
+    async (payload, { rejectWithValue, fulfillWithValue }) => {
         try {
-            const response = await fetchProduct()
-            if (!response.ok) {
+            // Pass payload to fetchProduct if needed
+            const response = await fetchProduct(payload);
+            if (response.status !== 200) {
                 throw new Error("Network response was not ok");
             }
-            const data = await response.json();
+            const data = response.data;
             return fulfillWithValue(data);
         } catch (error) {
             return rejectWithValue(error.message);

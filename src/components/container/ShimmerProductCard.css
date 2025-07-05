@@ -1,0 +1,109 @@
+/* Base card */
+.shimmer-card {
+  width: 100%;
+  border-radius: 16px;
+  background-color: #1f0606;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Image placeholder */
+.shimmer-image {
+  height: 200px;
+  width: 100%;
+  background-color: #f0f0f0;
+}
+
+/* Content wrapper */
+.shimmer-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Elements */
+.shimmer-badge,
+.shimmer-title,
+.shimmer-text,
+.shimmer-price,
+.shimmer-button {
+  background-color: #e2e8f0;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-badge {
+  width: 80px;
+  height: 16px;
+}
+
+.shimmer-title {
+  width: 60%;
+  height: 18px;
+}
+
+.shimmer-text {
+  width: 90%;
+  height: 14px;
+}
+
+.shimmer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.shimmer-price {
+  width: 50px;
+  height: 16px;
+}
+
+.shimmer-button {
+  width: 80px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+/* Waving shimmer effect */
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  height: 100%;
+  width: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  animation: shimmer-wave 1.2s infinite linear;
+}
+
+@keyframes shimmer-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Optional fade-in on card */
+@keyframes fadeIn {
+  from {
+    opacity: 0.3;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
