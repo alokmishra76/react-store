@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
@@ -7,6 +8,8 @@ const ProductCard = ({ product }) => {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef(null);
+    const [wishlisted, setWishlisted] = useState(false);
+
 
   // Handle carousel only during hover
   useEffect(() => {
@@ -25,6 +28,10 @@ const ProductCard = ({ product }) => {
   const truncate = (text, len = 80) =>
     text.length > len ? text.slice(0, len) + '…' : text;
 
+  const toggleWishlist = () => {
+    setWishlisted((prev) => !prev);
+  };
+
   return (
     <div
       className="product-card"
@@ -42,6 +49,14 @@ const ProductCard = ({ product }) => {
             }`}
           />
         ))}
+
+        <button className="wishlist-icon" onClick={toggleWishlist}>
+          {wishlisted ? (
+            <AiFillHeart color="#ef4444" size={22} />
+          ) : (
+            <AiOutlineHeart color="#fff" size={22} />
+          )}
+        </button>
 
         {isHovered && (
           <div className="product-card__dots">
