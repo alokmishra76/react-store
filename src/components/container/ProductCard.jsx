@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import './ProductCard.css';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onClick }) => {
   const { title, price, description, category, images } = product;
 
   const [index, setIndex] = useState(0);
@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className="product-card"
+      className="product-card" onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
