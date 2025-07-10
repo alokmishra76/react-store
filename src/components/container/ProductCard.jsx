@@ -1,6 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import './ProductCard.css';
+import { useEffect, useRef, useState } from "react";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import "./ProductCard.css";
+import useUserState from "../../hooks/useUserState";
+import { useSelector } from "react-redux";
+import Modal from "../../modal/Modal";
+import Login from "../container/Login";
 
 const ProductCard = ({ product, onClick }) => {
   const { title, price, description, category, images } = product;
@@ -8,10 +12,10 @@ const ProductCard = ({ product, onClick }) => {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef(null);
-    const [wishlisted, setWishlisted] = useState(false);
+  const [wishlisted, setWishlisted] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(null);
+  const userData = useSelector((state) => state.user);
 
-
-  // Handle carousel only during hover
   useEffect(() => {
     if (isHovered) {
       intervalRef.current = setInterval(() => {
@@ -26,15 +30,24 @@ const ProductCard = ({ product, onClick }) => {
   }, [isHovered, images.length]);
 
   const truncate = (text, len = 80) =>
-    text.length > len ? text.slice(0, len) + '…' : text;
+    text.length > len ? text.slice(0, len) + "…" : text;
+
+  const IsUserloggedIn = () => {
+    return userData?.isAuthenticated;
+  }
 
   const toggleWishlist = () => {
+    const isUserLoggedIn = IsUserloggedIn();
+    if (!isUserLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
     setWishlisted((prev) => !prev);
   };
 
   return (
     <div
-      className="product-card" onClick={onClick}
+      className="product-card"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -45,7 +58,7 @@ const ProductCard = ({ product, onClick }) => {
             src={img}
             alt={`${title} ${i + 1}`}
             className={`product-card__image ${
-              i === index ? 'visible' : 'hidden'
+              i === index ? "visible" : "hidden"
             }`}
           />
         ))}
@@ -61,10 +74,7 @@ const ProductCard = ({ product, onClick }) => {
         {isHovered && (
           <div className="product-card__dots">
             {images.map((_, i) => (
-              <span
-                key={i}
-                className={`dot ${i === index ? 'active' : ''}`}
-              />
+              <span key={i} className={`dot ${i === index ? "active" : ""}`} />
             ))}
           </div>
         )}
@@ -77,8 +87,10 @@ const ProductCard = ({ product, onClick }) => {
         <div className="product-card__footer">
           <span className="product-card__price">${price}</span>
           <button className="product-card__btn">Add to Cart</button>
+           <button className="product-card__btn" onClick={onClick}>Go to Product</button>
         </div>
       </div>
+      {showLoginModal && <Modal show={showLoginModal} title={'Please login'} onClose={() => setShowLoginModal(false)} children={<Login />}/>}
     </div>
   );
 };

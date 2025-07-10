@@ -15,7 +15,7 @@ const Modal = ({show, onClose, title, children}) => {
    <div className="modal-backdrop" onClick={handleBackdropClick}>
       <div className="modal-container">
         <div className="modal-header">
-          <h3>{title}</h3>
+          <h3></h3>
           <button className="modal-close" onClick={onClose}>
             ×
           </button>

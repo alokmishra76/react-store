@@ -18,7 +18,6 @@ const ProductContainer = () => {
   const shimmerArray = new Array(6).fill(0);
   
    const handleCardClick = (id) => {
-    console.log(`Product ID: ${id}`);
     navigate(`/products/${id}`);
   };
 

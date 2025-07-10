@@ -5,10 +5,11 @@ import "./Header.css";
 import {
   FaBars,
   FaSearch,
-  FaVideo,
   FaBell,
   FaUserCircle,
 } from "react-icons/fa";
+
+import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -81,7 +82,7 @@ const Header = () => {
       </div>
 
       <div className="header_right">
-         <FaVideo className="icon" />
+         <AiFillHeart color="#ef4444" className="icon" />
           <FaBell className="icon" />
           <FaUserCircle className="icon" />
       </div>
