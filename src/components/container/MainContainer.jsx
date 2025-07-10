@@ -4,7 +4,7 @@ import ProductContainer from './ProductContainer'
 
 const MainContainer = () => {
   return (
-    <div>
+    <div style={{margin: '32px'}}>
         <ButtonList />
         <ProductContainer />
     </div>

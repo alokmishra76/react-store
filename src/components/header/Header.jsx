@@ -9,6 +9,7 @@ import {
   FaBell,
   FaUserCircle,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -63,11 +64,13 @@ const Header = () => {
      <header className="header">
       <div className="header_left">
         <FaBars className="header_icon" onClick={toggleSidebar} />
-        <img
-            src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
-            alt="YouTube Logo"
-            className="header_logo"
-          />
+        <Link to="/">
+          <img
+              src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
+              alt="YouTube Logo"
+              className="header_logo"
+            />
+        </Link>
       </div>
 
       <div className="header_center">
