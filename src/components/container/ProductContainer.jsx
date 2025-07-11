@@ -12,7 +12,7 @@ const ProductContainer = () => {
   const { productsList, loading, error } = useSelector((s) => s.products);
 
   useEffect(() => {
-    dispatch(fetchProductThunk());
+    dispatch(fetchProductThunk({meta: { skipLoader: true }}));
   }, [dispatch]);
 
   const shimmerArray = new Array(6).fill(0);

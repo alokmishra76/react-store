@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './Login.css';
+import { useDispatch } from 'react-redux';
+import { userThunk } from '../../state/thunk/userThunk';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
-    email: '',
-    password: ''
+    email: 'john@mail.com',
+    password: 'changeme'
   });
 
   const handleChange = (e) => {
@@ -16,8 +19,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", form);
-    // Perform login logic here
+    dispatch(userThunk(form))
   };
 
   return (
@@ -34,6 +36,7 @@ const Login = () => {
           value={form.email}
           onChange={handleChange}
           required
+          disabled
         />
 
         <label htmlFor="password">Password</label>
@@ -45,6 +48,7 @@ const Login = () => {
           value={form.password}
           onChange={handleChange}
           required
+          disabled
         />
 
         <button type="submit" className="login-button">Login</button>

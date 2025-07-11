@@ -7,7 +7,6 @@ const useUserState = () => {
 
   useEffect(() => {
     setUserState(userData);
-    console.log("User Data:", userData);
   }, [userData]);
 
   return userState;
