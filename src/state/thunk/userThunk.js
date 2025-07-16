@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { onLogin } from "../../services/service/userService";
 import { userDetailsThunk } from "./userDetailsThunk";
+import { addToast } from "../slices/toastSlice";
 /**
  * Thunk to handle user login.
  * This function sends a POST request to the server with user credentials.
@@ -20,11 +21,12 @@ export const userThunk = createAsyncThunk(
             }
             const data = response.data;
              if(data?.access_token) {
-                // Dispatch userDetailsThunk to fetch user details after successful login
+                dispatch(addToast({ type: 'success', message: 'Login successful!' }));
                 dispatch(userDetailsThunk());
              }
             return data;
         } catch (error) {
+            dispatch(addToast({ type: 'error', message: 'Login failed!' }));
             return rejectWithValue(error.message);
         }
     }

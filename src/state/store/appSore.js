@@ -4,6 +4,7 @@ import userReducer from "../slices/userSlice";
 import productsDetailsReducer from "../slices/productDetailsSlice";
 import whishListProductsReducer from "../slices/whishListProductSlice";
 import loaderReducer from "../slices/loaderSlice";
+import toastReducer from "../slices/toastSlice";
 import { loaderMiddleware } from "../thunk/middleWare/loaderMiddleWare";
 
 const appStore = configureStore({
@@ -12,7 +13,8 @@ const appStore = configureStore({
         user: userReducer,
         productDetails: productsDetailsReducer,
         whishListProducts: whishListProductsReducer,
-        loader: loaderReducer
+        loader: loaderReducer,
+        toast: toastReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(loaderMiddleware),

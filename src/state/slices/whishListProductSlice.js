@@ -12,7 +12,10 @@ const whishPListProductSlice = createSlice({
             state.whishListProducts.push(action.payload);
         },
         removeFromWhishList: (state, action) => {
-            state.whishListProducts = state.whishListProducts.filter(product => product.id !== action.payload.id);
+            const index = state.whishListProducts.findIndex(product => product.id === action.payload);
+            if (index !== -1) {
+                state.whishListProducts.splice(index, 1);
+            }
         }
     }
 })

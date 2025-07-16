@@ -4,7 +4,6 @@ import "./Header.css";
 
 import {
   FaBars,
-  FaSearch,
   FaBell,
   FaUserCircle,
 } from "react-icons/fa";
@@ -18,8 +17,6 @@ const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const {whishListProducts} = useSelector((state) => state.whishListProducts);
-
-  console.log("whishListProducts", whishListProducts);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -85,7 +82,24 @@ const Header = () => {
       </div>
 
       <div className="header_right">
-         <AiFillHeart color="#ef4444" className="icon" />
+         <div className="icon-heart-wrapper" style={{ position: "relative", display: "inline-block" }}>
+           <AiFillHeart color="#ef4444" className="icon" />
+           <span
+             style={{
+               position: "absolute",
+               top: "-8px",
+               right: "-16px",
+               background: "gray",
+               color: "#fff",
+               borderRadius: "50%",
+               padding: "2px 6px",
+               fontSize: "12px"
+             }}
+           >
+             {whishListProducts.length || 0}
+           </span>
+         </div>
+
           <FaBell className="icon" />
           <FaUserCircle className="icon" />
       </div>

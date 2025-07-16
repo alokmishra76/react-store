@@ -4,7 +4,7 @@ import "./ProductCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../modal/Modal";
 import Login from "../container/Login";
-import { addToWhishList } from "../../state/slices/whishListProductSlice";
+import { addToWhishList, removeFromWhishList } from "../../state/slices/whishListProductSlice";
 
 const ProductCard = ({ product, onClick }) => {
   const { title, price, description, category, images } = product;
@@ -52,7 +52,11 @@ const ProductCard = ({ product, onClick }) => {
       return;
     }
     setWishlisted((prev) => !prev);
-    dispatch(addToWhishList(product));
+    if(wishlisted) {
+      dispatch(removeFromWhishList(product?.id))
+    } else {
+        dispatch(addToWhishList(product));
+    }
   };
 
   return (
