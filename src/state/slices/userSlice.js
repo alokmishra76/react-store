@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userThunk } from "../thunk/userThunk";
+import { userDetailsThunk } from "../thunk/userDetailsThunk";
 
 
 const userSlice = createSlice({
@@ -10,6 +11,7 @@ const userSlice = createSlice({
         error: null,
         access_token: null,
         refresh_token: null,
+        userDetails: null, // To store user details
     },
     reducer: {},
 
@@ -28,8 +30,20 @@ const userSlice = createSlice({
             .addCase(userThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload || 'Login failed';
-            });
-    }
+            })
+            .addCase(userDetailsThunk.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(userDetailsThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                state.userDetails = action.payload;
+            })
+            .addCase(userDetailsThunk.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || 'Failed to fetch user details';
+            }); 
+    },
 })
 
 export default userSlice.reducer;

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { onLogin } from "../../services/service/userService";
+import { userDetailsThunk } from "./userDetailsThunk";
 /**
  * Thunk to handle user login.
  * This function sends a POST request to the server with user credentials.
@@ -11,14 +12,17 @@ import { onLogin } from "../../services/service/userService";
 
 export const userThunk = createAsyncThunk(
     'user/login',
-    async (userData, { rejectWithValue }) => {
+    async (userData, { dispatch, rejectWithValue }) => {
         try {
             const response = await onLogin(userData);
             if (response.status !== 201) {
                 throw new Error('Login failed');
             }
-
             const data = response.data;
+             if(data?.access_token) {
+                // Dispatch userDetailsThunk to fetch user details after successful login
+                dispatch(userDetailsThunk());
+             }
             return data;
         } catch (error) {
             return rejectWithValue(error.message);

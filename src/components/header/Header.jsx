@@ -11,9 +11,15 @@ import {
 
 import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import HeaderSearch from "../container/HeaderSearch";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const {whishListProducts} = useSelector((state) => state.whishListProducts);
+
+  console.log("whishListProducts", whishListProducts);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -75,10 +81,7 @@ const Header = () => {
       </div>
 
       <div className="header_center">
-         <input type="text" placeholder="Search" />
-          <button>
-            <FaSearch />
-          </button>
+        <HeaderSearch />
       </div>
 
       <div className="header_right">
